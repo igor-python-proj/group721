@@ -1,4 +1,5 @@
-# Наследование
+# Наследование - дочерний класс забирает атрибуты и методы родительского класса,
+# может добавлять свои или заменять существующие
 # родительский класс, предок, суперкласс
 class Car:
     # конструктор, инициализатор - initializer
@@ -14,11 +15,19 @@ class Car:
         print(f"Машина марки {self.marka} едет в {destination}")
 
 # дочерние классы, подклассы, потомки
+# ElectroCar - дочерний класс (подкласс) Car: наследует всё его
+# и добавляет свой атрибут battery и метод charge_battery
 class ElectroCar(Car):
     def __init__(self, marka, color):
-        super().__init__(marka, color) # super - отсылка к родит классу
+        # super - отсылка к родит классу
+        # super().__init__(...) вызывает родительский конструктор,
+        # чтобы не повторять код создания marka и color
+        super().__init__(marka, color)
         self.battery = 0
 
+    # переопределение (override) - заменяем родительский метод своей реализацией:
+    # вызов tesla.drive_to пойдёт сюда, а не в Car;
+    # через super().drive_to() можно вызвать и родительскую версию
     def drive_to(self, destination):
         if self.battery > 5:
             # super().drive_to(destination)
@@ -32,6 +41,7 @@ class ElectroCar(Car):
         if self.battery >= 100:
             self.battery = 100
 
+# SportCar наследует Car без изменений: pass означает "ничего не добавляем"
 class SportCar(Car):
     pass
 
@@ -42,7 +52,8 @@ tesla.drive_to("Кара-Балта")
 tesla.charge_battery()
 tesla.drive_to("Кара-Балта")
 
-# Полиморфизм
+# Полиморфизм - один и тот же вызов v.drive_to(...) работает по-разному
+# в зависимости от фактического типа объекта
 car_1 = Car("Mercedes", "blue")
 car_2 = SportCar("Ferrari", "red")
 
@@ -50,6 +61,8 @@ tesla.drive_to(destination="Бишкек")
 car_1.drive_to(destination="Бишкек")
 car_2.drive_to(destination="Бишкек")
 
+# в списке объекты разных классов, код один: у tesla сработает переопределённый метод,
+# у car_1 и car_2 - унаследованный от Car
 vehicles = [tesla, car_1, car_2]
 
 for v in vehicles:
