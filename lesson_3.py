@@ -31,6 +31,12 @@ class BankAccount:
     def get_balance(self):
         return self.__balance
 
+    def __balance_positive(self):
+        if self.__balance > 0:
+            return True
+        else:
+            return False
+
     # сеттеры
     def withdraw(self, amount):
         if amount > self.__balance:
@@ -63,3 +69,7 @@ print(igor_account.get_balance())
 print(igor_account.code)
 igor_account.code = "1234"
 print(igor_account.code)
+# так писать код не стоит, в образовательных целях
+# name mangling
+print(igor_account._BankAccount__balance)
+print(igor_account._BankAccount__code)
