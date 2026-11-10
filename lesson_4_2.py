@@ -29,6 +29,8 @@ class Visitor:
         new_visitor.visitor_type = "vip"
         return new_visitor
 
+    # @staticmethod - метод без привязки к объекту и классу: не получает self/cls,
+    # это обычная функция, которую держат в классе по смыслу
     @staticmethod
     def validate_name(name):
         no_space_name = name.strip()
