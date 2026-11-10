@@ -40,8 +40,7 @@ class BankAccount:
     # сеттеры
     def withdraw(self, amount):
         if amount > self.__balance:
-            print("Сумма больше вашего баланса")
-            return
+            raise ValueError("Сумма меньше вашего баланса")
         self.__balance -= amount
 
     def deposit(self, amount):
@@ -63,7 +62,10 @@ print(igor_account._owner)
 igor_account.__balance = 0
 print(igor_account.__balance)
 print(igor_account.get_balance())
-igor_account.withdraw(1_000_000)
+try:
+    igor_account.withdraw(1_000_000)
+except ValueError as e:
+    print(e)
 igor_account.withdraw(1_000)
 print(igor_account.get_balance())
 print(igor_account.code)
