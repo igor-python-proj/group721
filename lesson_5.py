@@ -40,6 +40,6 @@ plist2 = Playlist("вайб", songs=["Песня 3", "Песня 4"])
 print(plist1)             # __str__
 print(repr(plist1))       # __repr__
 print(plist2 == plist1)   # __eq__
-plist3 = plist1 + plist2  # __add__
+plist3 = plist1 + plist2 + plist1 # __add__ # обратная Польская нотация
 print(plist3)             # __str__
 print(len(plist3))        # __len__
