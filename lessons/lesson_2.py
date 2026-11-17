@@ -1,18 +1,8 @@
+from lessons.car import Car
+
 # Наследование - дочерний класс забирает атрибуты и методы родительского класса,
 # может добавлять свои или заменять существующие
 # родительский класс, предок, суперкласс
-class Car:
-    # конструктор, инициализатор - initializer
-    def __init__(self, marka, color):
-        self.marka = marka
-        self.color = color
-
-    def change_color(self, new_color):
-        self.color = new_color
-
-    def drive_to(self, destination):
-        self.change_color("black")
-        print(f"Машина марки {self.marka} едет в {destination}")
 
 # дочерние классы, подклассы, потомки
 # ElectroCar - дочерний класс (подкласс) Car: наследует всё его
@@ -46,24 +36,26 @@ class SportCar(Car):
     pass
 
 
-tesla = ElectroCar("Tesla", "blue")
-print(f"Electro car {tesla.marka}, {tesla.color}")
-tesla.drive_to("Кара-Балта")
-tesla.charge_battery()
-tesla.drive_to("Кара-Балта")
+if __name__ == "__main__":
+    tesla = ElectroCar("Tesla", "blue")
+    print(tesla)
+    print(f"Electro car {tesla.marka}, {tesla.color}")
+    tesla.drive_to("Кара-Балта")
+    tesla.charge_battery()
+    tesla.drive_to("Кара-Балта")
 
-# Полиморфизм - один и тот же вызов v.drive_to(...) работает по-разному
-# в зависимости от фактического типа объекта
-car_1 = Car("Mercedes", "blue")
-car_2 = SportCar("Ferrari", "red")
+    # Полиморфизм - один и тот же вызов v.drive_to(...) работает по-разному
+    # в зависимости от фактического типа объекта
+    car_1 = Car("Mercedes", "blue")
+    car_2 = SportCar("Ferrari", "red")
 
-tesla.drive_to(destination="Бишкек")
-car_1.drive_to(destination="Бишкек")
-car_2.drive_to(destination="Бишкек")
+    tesla.drive_to(destination="Бишкек")
+    car_1.drive_to(destination="Бишкек")
+    car_2.drive_to(destination="Бишкек")
 
-# в списке объекты разных классов, код один: у tesla сработает переопределённый метод,
-# у car_1 и car_2 - унаследованный от Car
-vehicles = [tesla, car_1, car_2]
+    # в списке объекты разных классов, код один: у tesla сработает переопределённый метод,
+    # у car_1 и car_2 - унаследованный от Car
+    vehicles = [tesla, car_1, car_2]
 
-for v in vehicles:
-    v.drive_to("Бишкек")
+    for v in vehicles:
+        v.drive_to("Бишкек")
